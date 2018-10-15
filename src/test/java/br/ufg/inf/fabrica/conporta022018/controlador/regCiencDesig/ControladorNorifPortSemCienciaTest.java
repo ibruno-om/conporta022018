@@ -6,7 +6,7 @@
 
 package br.ufg.inf.fabrica.conporta022018.controlador.regCiencDesig;
 
-import br.ufg.inf.fabrica.conporta022018.controlador.ControladorRegCiencDesig;
+import br.ufg.inf.fabrica.conporta022018.controlador.ControladorNorifPortSemCiencia;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
 import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
 import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ControladorRegCiencDesigTest {
+public class ControladorNorifPortSemCienciaTest {
 
-    private static ControladorRegCiencDesig controladorRegCiencDesig;
+    private static ControladorNorifPortSemCiencia controladorNorifPortSemCiencia;
 
     /*
      * Preparação do ambiente para teste.
@@ -29,7 +29,7 @@ public class ControladorRegCiencDesigTest {
     @BeforeClass
     public static void casoTestPepararCenario() throws IOException {
 
-        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/regCiencDesig/RegCienDesigDadosTest.csv";
+        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/notifPortSemCiencia/NotifPortSemCienciaTest.csv";
         String REGRA = ";";
         List<String> dadosSoftware = new ArrayList<>();
         Extrator extrator = new ExtratorCSV();
@@ -80,7 +80,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestPrepararExecucao() {
 
         //Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
-        controladorRegCiencDesig = new ControladorRegCiencDesig();
+        controladorNorifPortSemCiencia = new ControladorNorifPortSemCiencia();
     }
 
     /*
@@ -96,16 +96,8 @@ public class ControladorRegCiencDesigTest {
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "INF", 2018, 0001);
+        controladorNorifPortSemCiencia.notifPortSemCiencia();
 
-    }
-
-    @Test
-    public void casoTestDadosExcecoes() throws IOException {
-
-        //Grupo de teste DadosExcecoes, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "FACE", 2018, 0001);
-        //O cenario acima testa a primeira exceção do caso de uso a unidade acadêmica não é localizada.
     }
 
     @AfterClass
