@@ -95,16 +95,47 @@ public class ControladorIdSoftTest {
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
-        controladorIdSoft.idSoft("123.456.789-12", "INF", 2018, 0001);
+        controladorIdSoft.idSoft("123.456.789-12", "123456");
+        //Logando com o CPF.
 
+        controladorIdSoft.idSoft("jose@exemplo.com", "123456");
+        //Logando com o e-mail.
+
+        controladorIdSoft.recuperarSenha("123.456.789-12");
+        //Recuperar senha utilizando CPF.
+
+        controladorIdSoft.recuperarSenha("jose@exemplo.com");
+        //Recuperar senha utilizando e-mail.
     }
 
     @Test
     public void casoTestDadosExcecoes() throws IOException {
 
         //Grupo de teste DadosExcecoes, exemplo:
-        controladorIdSoft.idSoft("123.456.789-12", "FACE", 2018, 0001);
-        //O cenario acima testa a primeira exceção do caso de uso a unidade acadêmica não é localizada.
+        controladorIdSoft.idSoft("123.456.789-12", "000000");
+        //O cenario acima testa a primeira exceção do caso de uso, senha incorreta.
+
+        controladorIdSoft.idSoft("123.123.789-12", "123456");
+        //O cenario acima testa a primeira exceção do caso de uso, identificador CPF inválido.
+
+        controladorIdSoft.idSoft("josew@exemplo.com", "123456");
+        //O cenario acima testa a primeira exceção do caso de uso, identificador email inválido.
+
+        controladorIdSoft.idSoft("123.321.123-32", "456123");
+        //O cenario acima testa a segunda exceção do caso de uso, usuário inativo.
+
+
+        controladorIdSoft.recuperarSenha("123.000.789-12");
+        //O cenario acima testa a primeira exceção do fluxo alternativo, recuperar senha utilizando CPF inválido.
+
+        controladorIdSoft.recuperarSenha("josew@exemplo.com");
+        //O cenario acima testa a primeira exceção do fluxo alternativo, recuperar senha utilizando e-mail inválido.
+
+        controladorIdSoft.recuperarSenha("123.321.123-32");
+        //O cenario acima testa a segunda exceção do fluxo alternativo, recuperar senha utilizando o CPF de um usuário inativo.
+
+        controladorIdSoft.recuperarSenha("maria@exemplo.com");
+        //O cenario acima testa a segunda exceção do fluxo alternativo, recuperar senha utilizando o e-mail de um usuário inativo.
     }
 
     @AfterClass

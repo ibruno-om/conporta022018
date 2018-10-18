@@ -1,4 +1,9 @@
 pessoa
 PKpes;nomePes; cpfPes; emailPes; senhaUsu; ehUsuAtivo
 1;Jose Carlos Santos; 123.456.789-12; jose@exemplo.com; 123456; true
-
+pessoa
+PKpes;nomePes; cpfPes; emailPes; senhaUsu; ehUsuAtivo
+2;Maria Silva; 123.321.123-32; maria@exemplo.com; 456123; false
+undAdm
+PKundAdm;nomeUnd; siglaUnd; tipoUnd; minInat; ultPort; anoPort; ultNumExped; ultNumProp
+1;Instituto de Informática; INF; Unidade Acadêmica; 15; 2018001; 2018; 1; -1

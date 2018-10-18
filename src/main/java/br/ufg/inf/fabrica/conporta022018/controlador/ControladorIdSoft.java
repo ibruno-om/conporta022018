@@ -5,7 +5,11 @@ package br.ufg.inf.fabrica.conporta022018.controlador;
  */
 public class ControladorIdSoft {
 
-    public void idSoft(String cpf, String siglaUndId, int anoId, int seqId) {
+    public void idSoft(String identificador, String senha) {
+
+    }
+
+    public void recuperarSenha(String identificador) {
 
     }
 
