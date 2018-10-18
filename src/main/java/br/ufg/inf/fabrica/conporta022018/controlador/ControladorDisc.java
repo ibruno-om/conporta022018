@@ -6,10 +6,32 @@
 
 package br.ufg.inf.fabrica.conporta022018.controlador;
 
-public class ControladorRegCiencDesig {
+import br.ufg.inf.fabrica.conporta022018.modelo.Discente;
 
-    public void regCiencDesig(String cpf, String siglaUndId, int anoId, int seqId) {
+public class ControladorDisc {
+
+    public void incluirDiscente(String nomePes, int cpfPes, String emailPes) {
 
     }
 
+    public void excluirDiscente(int cpfPes) {
+
+    }
+
+    public Discente consultarDiscente(int cpfPes) {
+
+        return new Discente();
+    }
+
+    public void alterarDiscente(String nomePes, int cpfPes, String emailPes) {
+
+    }
+
+    public void importarDiscente(String caminhoDoArquivo) {
+
+    }
+
+    public void notificarDiscente(String emailPes) {
+
+    }
 }
