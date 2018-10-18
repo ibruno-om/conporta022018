@@ -4,9 +4,9 @@
  * Creative Commons Attribution 4.0 International License.
  */
 
-package br.ufg.inf.fabrica.conporta022018.controlador.regCiencDesig;
+package br.ufg.inf.fabrica.conporta022018.controlador.cancPortRef;
 
-import br.ufg.inf.fabrica.conporta022018.controlador.ControladorRegCiencDesig;
+import br.ufg.inf.fabrica.conporta022018.controlador.ControladorCancPortRef;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
 import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
 import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ControladorRegCiencDesigTest {
+public class ControladorCancPortRefTest {
 
-    private static ControladorRegCiencDesig controladorRegCiencDesig;
+    private static ControladorCancPortRef controladorCancPortRef;
 
     /*
      * Preparação do ambiente para teste.
@@ -29,7 +29,7 @@ public class ControladorRegCiencDesigTest {
     @BeforeClass
     public static void casoTestPepararCenario() throws IOException {
 
-        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/regCiencDesig/RegCienDesigDadosTest.csv";
+        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/cancPortRef/CancPortRefDadosTest.csv";
         String REGRA = ";";
         List<String> dadosSoftware = new ArrayList<>();
         Extrator extrator = new ExtratorCSV();
@@ -45,32 +45,17 @@ public class ControladorRegCiencDesigTest {
             linha = dadosSoftware.get(index);
 
             //Definir as tabelas que serão populadas no Banco de Dados.
-            if (linha.equals("pessoa") || linha.equals("portaria") || linha.equals("undAdm") || linha.equals("designado")) {
+            if (linha.equals("portaria")) {
                 tabelaAtual = linha;
                 index++;
                 continue;
             }
 
             switch (tabelaAtual) {
-                case "pessoa" :
-                    extrator.setTexto(linha);
-                    dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela pessoa no Banco de Dados.
-                    break;
                 case "portaria" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
                     //Aqui colocar os comandos para popular a tabela portaria no Banco de Dados.
-                    break;
-                case "undAdm" :
-                    extrator.setTexto(linha);
-                    dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela Unidade Administrativa no Banco de Dados.
-                    break;
-                case "designado" :
-                    extrator.setTexto(linha);
-                    dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela designados no Banco de dados.
                     break;
             }
         }
@@ -80,7 +65,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestPrepararExecucao() {
 
         //Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
-        controladorRegCiencDesig = new ControladorRegCiencDesig();
+        controladorCancPortRef = new ControladorCancPortRef();
     }
 
     /*
@@ -96,7 +81,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "INF", 2018, 0001);
+        controladorCancPortRef.cancelarPortariaReferenciada("INF201810");
 
     }
 
@@ -104,8 +89,19 @@ public class ControladorRegCiencDesigTest {
     public void casoTestDadosExcecoes() throws IOException {
 
         //Grupo de teste DadosExcecoes, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "FACE", 2018, 0001);
-        //O cenario acima testa a primeira exceção do caso de uso a unidade acadêmica não é localizada.
+        controladorCancPortRef.cancelarPortariaReferenciada("INF201801");
+        // O cenario acima testa a primeira exceção do caso de uso, onde a portaria não é localizada.
+
+        controladorCancPortRef.cancelarPortariaReferenciada("INF201811");
+        // O cenario acima testa a segunda exceção do caso de uso, onde uma das portarias referenciadas para
+        // cancelamento possui o status "Proposta".
+
+        controladorCancPortRef.cancelarPortariaReferenciada("INF201812");
+        // O cenario acima testa a segunda exceção do caso de uso, onde uma das portarias referenciadas para
+        // cancelamento possui o status "Cancelada".
+
+        controladorCancPortRef.cancelarPortariaReferenciada("INF201813");
+        // O cenario acima testa a "exceção interna" do caso de uso, onde não existem portarias referenciadas.
     }
 
     @AfterClass
@@ -114,16 +110,11 @@ public class ControladorRegCiencDesigTest {
         //Aqui deve ser verificado os resultados da exceção do Grupo G1 e G2, normalmente aqui
         // irá fica as suas pós-condições. Exemplo:
 
-        //Busca a data atual.
-        Date hoje = new Date();
-        SimpleDateFormat df;
-        df = new SimpleDateFormat("dd/MM/yyyy");
-        String dataHoje = df.format(hoje);
+        String status = "cancelada";
+        // Pega no banco de dados os status das portarias referenciadas com indicativo de cancelamento e verifica
+        // se são iguais à "cancelada".
 
-        //pega a data que foi armazenada no banco de dados e verifica com a data de execução do teste, ou seja,
-        // a data de hoje.
-
-        //Assert.assertEquals(dataHoje, rodaSQLparaPegarADataGravadaNoBancoDeDados);
+        // Assert.assertEquals(status, rodaSQLparaPegarOsStatusDasPortariasReferenciadasParaCancelamentoBancoDeDados);
     }
 
 }
