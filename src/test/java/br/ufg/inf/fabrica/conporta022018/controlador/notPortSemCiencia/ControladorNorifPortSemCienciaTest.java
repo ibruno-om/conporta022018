@@ -4,7 +4,7 @@
  * Creative Commons Attribution 4.0 International License.
  */
 
-package br.ufg.inf.fabrica.conporta022018.controlador.regCiencDesig;
+package br.ufg.inf.fabrica.conporta022018.controlador.notPortSemCiencia;
 
 import br.ufg.inf.fabrica.conporta022018.controlador.ControladorNorifPortSemCiencia;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
