@@ -6,7 +6,7 @@
 
 package br.ufg.inf.fabrica.conporta022018.controlador.regCiencDesig;
 
-import br.ufg.inf.fabrica.conporta022018.controlador.ControladorRegCiencDesig;
+import br.ufg.inf.fabrica.conporta022018.controlador.ControladorDisc;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
 import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
 import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ControladorRegCiencDesigTest {
 
-    private static ControladorRegCiencDesig controladorRegCiencDesig;
+    private static ControladorDisc controladorDisc;
 
     /*
      * Preparação do ambiente para teste.
@@ -80,7 +80,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestPrepararExecucao() {
 
         //Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
-        controladorRegCiencDesig = new ControladorRegCiencDesig();
+        controladorDisc = new ControladorDisc();
     }
 
     /*
@@ -96,7 +96,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "INF", 2018, 0001);
+        controladorDisc.regCiencDesig("123.456.789-12", "INF", 2018, 0001);
 
     }
 
@@ -104,7 +104,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestDadosExcecoes() throws IOException {
 
         //Grupo de teste DadosExcecoes, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "FACE", 2018, 0001);
+        controladorDisc.regCiencDesig("123.456.789-12", "FACE", 2018, 0001);
         //O cenario acima testa a primeira exceção do caso de uso a unidade acadêmica não é localizada.
     }
 
