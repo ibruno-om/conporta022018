@@ -26,14 +26,12 @@ public class ControladorEncPortTest {
         String tabelaAtual = " ";
         String dados[];
         String linha;
-        //Criar as instâncias de todos os objetos DAO's necessários para preparar o cenario.
-
+    
         dadosSoftware = lerArquivo.lerArquivo(CAMINHO_CSV);
 
         for (int index = 0; index < dadosSoftware.size(); index++) {
             linha = dadosSoftware.get(index);
 
-            //Definir as tabelas que serão populadas no Banco de Dados.
             if (linha.equals("pessoa") || linha.equals("portaria") || linha.equals("undAdm") || linha.equals("designado")) {
                 tabelaAtual = linha;
                 index++;
@@ -44,22 +42,18 @@ public class ControladorEncPortTest {
                 case "pessoa" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela pessoa no Banco de Dados.
                     break;
                 case "portaria" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela portaria no Banco de Dados.
                     break;
                 case "undAdm" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela Unidade Administrativa no Banco de Dados.
                     break;
                 case "designado" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela designados no Banco de dados.
                     break;
             }
         }
@@ -68,7 +62,6 @@ public class ControladorEncPortTest {
     @Before
     public void casoTestPrepararExecucao() {
 
-        // Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
 
         controladorEncPort = new ControladorEncPort();
     }
@@ -85,39 +78,29 @@ public class ControladorEncPortTest {
     @Test
     public void casoTestDadosValidos() throws IOException {
 
-        // Grupo de teste DadosValidos
 
         controladorEncPort.encPortariaCiencia("INF201802");
-        // O cenário acima testa o encaminhamento de uma portaria para a ciência das unidades recebedoras e
-        // dos designados uma vez que o sistema fez a requisição.
 
+        
         controladorEncPort.encPortariaCiencia("INF201802");
-        // O cenário acima testa o encaminhamento de uma portaria para a ciência das unidades recebedoras e
-        // dos designados quando um usuário solicita o reenvio.
 
     }
 
     @Test
     public void casoTestDadosExcecoes() throws IOException {
 
-        // Grupo de teste DadosExcecoes.
 
         controladorEncPort.encPortariaCiencia("INF201803");
-        // O cenario acima testa a exceção do caso de uso, onde um ou mais email's não são validos.
 
     }
 
     @AfterClass
     public static void casoTestResultados() throws IOException {
 
-        // Aqui deve ser verificado os resultados da exceção do Grupo G1 e G2, normalmente aqui
-        // irá fica as suas pós-condições.
-
+     
         List emails = new ArrayList();
         emails.add("keslleyls@exemplo.com");
-        // Valida se o controlador do serviço de email teve sucesso em enviar o email de ciêcia para todos
-        // os recebedores e designados
-
+        
         // Assert.assertEquals(emails, rodaSQLparaPegarOsEnderecosDeEmailQueDeveriamReceberEmail);
     }
 
