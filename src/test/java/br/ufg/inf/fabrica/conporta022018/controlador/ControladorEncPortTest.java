@@ -87,11 +87,11 @@ public class ControladorEncPortTest {
 
         // Grupo de teste DadosValidos
 
-        controladorEncPort.encPortariaCiencia("INF201810");
+        controladorEncPort.encPortariaCiencia("INF201802");
         // O cenário acima testa o encaminhamento de uma portaria para a ciência das unidades recebedoras e
         // dos designados uma vez que o sistema fez a requisição.
 
-        controladorEncPort.encPortariaCiencia("INF201814");
+        controladorEncPort.encPortariaCiencia("INF201802");
         // O cenário acima testa o encaminhamento de uma portaria para a ciência das unidades recebedoras e
         // dos designados quando um usuário solicita o reenvio.
 
@@ -102,7 +102,7 @@ public class ControladorEncPortTest {
 
         // Grupo de teste DadosExcecoes.
 
-        controladorEncPort.encPortariaCiencia("INF201801");
+        controladorEncPort.encPortariaCiencia("INF201803");
         // O cenario acima testa a exceção do caso de uso, onde um ou mais email's não são validos.
 
     }
@@ -114,8 +114,8 @@ public class ControladorEncPortTest {
         // irá fica as suas pós-condições.
 
         List emails = new ArrayList();
-
-        // Valida se o controlador do serviço de email teve sucesso em enviar o email de ciêcni para todos
+        emails.add("keslleyls@exemplo.com");
+        // Valida se o controlador do serviço de email teve sucesso em enviar o email de ciêcia para todos
         // os recebedores e designados
 
         // Assert.assertEquals(emails, rodaSQLparaPegarOsEnderecosDeEmailQueDeveriamReceberEmail);
