@@ -96,7 +96,7 @@ public class ControladorExpiraPortaTest {
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
-        controladorExpiraPorta.expiraPorta("01102018");
+        controladorExpiraPorta.expiraPorta();
 
     }
 
