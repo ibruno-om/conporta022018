@@ -4,9 +4,9 @@
  * Creative Commons Attribution 4.0 International License.
  */
 
-package br.ufg.inf.fabrica.conporta022018.controlador.regCiencDesig;
+package br.ufg.inf.fabrica.conporta022018.controlador.PesqPorta;
 
-import br.ufg.inf.fabrica.conporta022018.controlador.ControladorRegCiencDesig;
+import br.ufg.inf.fabrica.conporta022018.controlador.ControladorPesqPorta;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
 import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
 import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
@@ -17,9 +17,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ControladorRegCiencDesigTest {
+public class ControladorPesqPortaTest {
 
-    private static ControladorRegCiencDesig controladorRegCiencDesig;
+    private static ControladorPesqPorta controladorPesqPorta;
 
     /*
      * Preparação do ambiente para teste.
@@ -29,7 +29,7 @@ public class ControladorRegCiencDesigTest {
     @BeforeClass
     public static void casoTestPepararCenario() throws IOException {
 
-        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/regCiencDesig/RegCienDesigDadosTest.csv";
+        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/pesqPorta/PesqPortaDadosTest.csv";
         String REGRA = ";";
         List<String> dadosSoftware = new ArrayList<>();
         Extrator extrator = new ExtratorCSV();
@@ -45,29 +45,19 @@ public class ControladorRegCiencDesigTest {
             linha = dadosSoftware.get(index);
 
             //Definir as tabelas que serão populadas no Banco de Dados.
-            if (linha.equals("pessoa") || linha.equals("portaria") || linha.equals("undAdm") || linha.equals("designado")) {
+            if (linha.equals("portaria") || linha.equals("filtroDTO")) {
                 tabelaAtual = linha;
                 index++;
                 continue;
             }
 
             switch (tabelaAtual) {
-                case "pessoa" :
-                    extrator.setTexto(linha);
-                    dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela pessoa no Banco de Dados.
-                    break;
                 case "portaria" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
                     //Aqui colocar os comandos para popular a tabela portaria no Banco de Dados.
                     break;
-                case "undAdm" :
-                    extrator.setTexto(linha);
-                    dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela Unidade Administrativa no Banco de Dados.
-                    break;
-                case "designado" :
+                case "filtroDTO" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
                     //Aqui colocar os comandos para popular a tabela designados no Banco de dados.
@@ -80,7 +70,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestPrepararExecucao() {
 
         //Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
-        controladorRegCiencDesig = new ControladorRegCiencDesig();
+        controladorPesqPorta = new ControladorPesqPorta();
     }
 
     /*
@@ -96,7 +86,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "INF", 2018, 0001);
+        controladorPesqPorta.pesquisa();
 
     }
 
@@ -104,7 +94,7 @@ public class ControladorRegCiencDesigTest {
     public void casoTestDadosExcecoes() throws IOException {
 
         //Grupo de teste DadosExcecoes, exemplo:
-        controladorRegCiencDesig.regCiencDesig("123.456.789-12", "FACE", 2018, 0001);
+        controladorPesqPorta.pesqPorta("123.456.789-12", "FACE", 2018, 0001);
         //O cenario acima testa a primeira exceção do caso de uso a unidade acadêmica não é localizada.
     }
 
