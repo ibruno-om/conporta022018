@@ -1,5 +1,8 @@
 package br.ufg.inf.fabrica.conporta022018.controlador.ediPorta;
 
+import br.ufg.inf.fabrica.conporta022018.util.Extrator;
+import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
+import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
@@ -17,7 +20,6 @@ import static org.junit.Assert.*;
 @RunWith(Arquillian.class)
 public class EdiPortaTest {
 
-    @BeforeClass
     @BeforeClass
     public static void casoTestPepararCenario() throws IOException {
 
