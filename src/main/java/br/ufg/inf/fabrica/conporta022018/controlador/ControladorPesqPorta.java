@@ -5,6 +5,8 @@
  */
 
 package br.ufg.inf.fabrica.conporta022018.controlador;
+import br.ufg.inf.fabrica.conporta022018.modelo.Portaria;
+
 
 public class ControladorPesqPorta {
 

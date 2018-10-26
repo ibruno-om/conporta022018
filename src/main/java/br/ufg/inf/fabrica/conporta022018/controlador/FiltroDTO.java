@@ -1,14 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.ufg.inf.fabrica.conporta022018.controlador;
 
-/**
- *
- * @author guiar
- */
+import java.util.Date;
+
+
 class FiltroDTO {
+   private Long codigoDesignado;
+   private Long codigoUnidadeAdm;
+   private Integer anoPortaria;
+   private Date inicioVigencia;
+   private Date fimVigencia;
+
+    public FiltroDTO(Long codigoDesignado, Long codigoUnidadeAdm, Integer anoPortaria, Date inicioVigencia, Date fimVigencia) {
+        this.codigoDesignado = codigoDesignado;
+        this.codigoUnidadeAdm = codigoUnidadeAdm;
+        this.anoPortaria = anoPortaria;
+        this.inicioVigencia = inicioVigencia;
+        this.fimVigencia = fimVigencia;
+    }
+   
+    
+    
+    
     
 }
