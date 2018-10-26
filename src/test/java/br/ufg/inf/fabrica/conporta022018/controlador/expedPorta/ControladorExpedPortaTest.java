@@ -32,7 +32,7 @@ public class ControladorExpedPortaTest {
     @BeforeClass
     public static void casoTestPepararCenario() throws IOException {
 
-        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/regCiencDesig/RegCienDesigDadosTest.csv";
+        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/expedPorta/ExpedPortaDadosTest.csv";
         String REGRA = ";";
         List<String> dadosSoftware = new ArrayList<>();
         Extrator extrator = new ExtratorCSV();
@@ -49,7 +49,11 @@ public class ControladorExpedPortaTest {
             linha = dadosSoftware.get(index);
 
             //Definir as tabelas que serão populadas no Banco de Dados.
-            if (linha.equals("pessoa") || linha.equals("portaria") || linha.equals("undAdm") || linha.equals("designado")) {
+            if (linha.equals("portaComFinalVig") || linha.equals("portaDesigExist") || linha.equals("portaSemFinalVig")
+                    || linha.equals("portaDesigInexist") || linha.equals("portaSemIniVig") || linha.equals("portaVigExpir")
+                    || linha.equals("portaExpedida") || linha.equals("portaCancelada") || linha.equals("desigExist")
+                    || linha.equals("desigInexist") || linha.equals("pessoa") || linha.equals("undAdm")) {
+
                 tabelaAtual = linha;
                 index++;
                 continue;
