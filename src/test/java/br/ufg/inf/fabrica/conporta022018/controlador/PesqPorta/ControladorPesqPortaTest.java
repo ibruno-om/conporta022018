@@ -86,6 +86,7 @@ public class ControladorPesqPortaTest {
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
+        FiltroDTO filtro = new FiltroDTO();
         controladorPesqPorta.pesquisa();
 
     }
