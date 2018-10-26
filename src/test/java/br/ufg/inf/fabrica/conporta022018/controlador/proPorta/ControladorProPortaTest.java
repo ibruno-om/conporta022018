@@ -9,6 +9,7 @@ import org.junit.*;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -76,13 +77,31 @@ public class ControladorProPortaTest{
     }
 
     @Test
-    public void casoTestDadosInvalidos () throws ParseException{
+    public void casoTestDatasInvalidas () throws ParseException{
         DateFormat f = DateFormat.getDateInstance();
         Date dtIniVig = f.parse("12/05/2019");
         Date dtFimVig = f.parse("30/10/2019");
         controladorProPorta.ProPorta("Controle de estagio", dtIniVig, dtFimVig, 28, "" +
                 "Portaria que cuida dos estagiarios na UFG", "Portaria com a responsabilidade de cuidar" +
                 "dos estagiarios e manter o funcionamento dos processos de estagio");
+    }
+
+    @AfterClass
+    public static void casoTestResultados() throws IOException {
+
+        //Aqui deve ser verificado os resultados da exceção do Grupo G1 e G2, normalmente aqui
+        // irá fica as suas pós-condições. Exemplo:
+
+        //Busca a data atual.
+        Date hoje = new Date();
+        SimpleDateFormat df;
+        df = new SimpleDateFormat("dd/MM/yyyy");
+        String dataHoje = df.format(hoje);
+
+        //pega a data que foi armazenada no banco de dados e verifica com a data de execução do teste, ou seja,
+        // a data de hoje.
+
+        //Assert.assertEquals(dataHoje, rodaSQLparaPegarADataGravadaNoBancoDeDados);
     }
 
 
