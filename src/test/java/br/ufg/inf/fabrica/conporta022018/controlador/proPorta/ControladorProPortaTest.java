@@ -77,13 +77,48 @@ public class ControladorProPortaTest{
     }
 
     @Test
-    public void casoTestDatasInvalidas () throws ParseException{
+    public void casoTestDadosInvalidos () throws ParseException{
         DateFormat f = DateFormat.getDateInstance();
         Date dtIniVig = f.parse("12/05/2019");
         Date dtFimVig = f.parse("30/10/2019");
         controladorProPorta.ProPorta("Controle de estagio", dtIniVig, dtFimVig, 28, "" +
                 "Portaria que cuida dos estagiarios na UFG", "Portaria com a responsabilidade de cuidar" +
                 "dos estagiarios e manter o funcionamento dos processos de estagio");
+    }
+
+    @Test
+    public void ediPortaUsuarioNaoAdministradorTest() {
+
+    }
+
+    @Test
+    public  void ediPortaStatusNaoPropostaTest() {
+
+    }
+
+    @Test
+    public void ediPortaDadosObrigatoriosNaoPreenchidosTest() {
+
+    }
+
+    @Test
+    public  void ediPortaReferenciaInvalidaTest() {
+
+    }
+
+    @Test
+    public void ediPortaReferenciaValidaTest() {
+
+    }
+
+    @Test
+    public void ediPortaDesignadosValidosTest() {
+
+    }
+
+    @Test
+    public void ediPortaDesignadosInvalidosTest() {
+
     }
 
     @AfterClass
