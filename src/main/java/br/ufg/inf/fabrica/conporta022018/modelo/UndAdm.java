@@ -5,36 +5,22 @@
  */
 package br.ufg.inf.fabrica.conporta022018.modelo;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  *
  * @author Breno de Melo Gomes
  */
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class UndAdm {
+    
     private String siglaUndAdm;
     private int minInat;
-    
-    public UndAdm(String siglaUndAdm, int minInat){
-        this.siglaUndAdm = siglaUndAdm;
-        this.minInat = minInat;
-    }
-    
-    
-    public String getSiglaUndAdm() {
-        return siglaUndAdm;
-    }
-
-    public void setSiglaUndAdm(String siglaUndAdm) {
-        this.siglaUndAdm = siglaUndAdm;
-    }
-
-    public int getMinInat() {
-        return minInat;
-    }
-
-    public void setMinInat(int minInat) {
-        this.minInat = minInat;
-    }
-    
-    
    
 }

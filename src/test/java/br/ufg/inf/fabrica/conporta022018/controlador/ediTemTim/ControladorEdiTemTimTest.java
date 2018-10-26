@@ -6,7 +6,7 @@
 
 package br.ufg.inf.fabrica.conporta022018.controlador.ediTemTim;
 
-import br.ufg.inf.fabrica.conporta022018.controlador.ControladorEdiTemTim;
+import br.ufg.inf.fabrica.conporta022018.controlador.ControladorManterUndAdm;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
 import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
 import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
@@ -16,12 +16,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import br.ufg.inf.fabrica.conporta022018.modelo.Acesso
-import br.ufg.inf.fabrica.conporta022018.modelo.UndAdm        
+import br.ufg.inf.fabrica.conporta022018.modelo.UndAdm;        
 
 public class ControladorEdiTemTimTest {
 
-    private static ControladorEdiTemTim controladorEdiTemTim;
+    private static ControladorManterUndAdm controladorEdiTemTim;
     private dadosAcesso[]
     /*
      * Preparação do ambiente para teste.
@@ -37,9 +36,9 @@ public class ControladorEdiTemTimTest {
         Extrator extrator = new ExtratorCSV();
         LerArquivo lerArquivo = new LerArquivo();
         String tabelaAtual = " ";
-        String dadosAcesso[];
         String dadosUndAdm[];
-        String linha;        
+        String linha;  
+        UndAdm undAdm = new UndAdm();
 
         dadosSoftware = lerArquivo.lerArquivo(CAMINHO_CSV);
 
@@ -47,22 +46,19 @@ public class ControladorEdiTemTimTest {
             linha = dadosSoftware.get(index);
 
             //Definir as tabelas que serão populadas no Banco de Dados.
-            if (linha.equals("acesso") || linha.equals("undAdm")) {
+            if (linha.equals("undAdm")) {
                 tabelaAtual = linha;
                 index++;
                 continue;
             }
 
-            switch (tabelaAtual) {
-                case "acesso" :
-                    extrator.setTexto(linha);
-                    dadosAcesso = extrator.getResultado(REGRA);  
-                    //Aqui colocar comandos para envia ao BD
-                    break;               
+            switch (tabelaAtual) {               
                 case "undAdm" :
                     extrator.setTexto(linha);
                     dadosUndAdm = extrator.getResultado(REGRA);  
+                    undAdm.setSiglaUndAdm(dadosUndAdm[0]);
                     //Aqui colocar comandos para envia ao BD
+                    
                     break;         
             }
         }
@@ -72,7 +68,7 @@ public class ControladorEdiTemTimTest {
     public void casoTestPrepararExecucao() {
 
         //Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
-        controladorEdiTemTim = new ControladorEdiTemTim();
+        controladorEdiTemTim = new ControladorManterUndAdm();
     }
 
     /*
@@ -89,30 +85,20 @@ public class ControladorEdiTemTimTest {
 
         //Grupo de teste DadosValidos, exemplo:   
         //caso 1
-        UndAdm undAdm = new UndAdm("INF",15);
-        Acesso acesso = new Acesso("chefe");        
-        controladorEdiTemTim.alterarTempoDeSessaoDeUnidadeAdministrativa(undAdm, acesso);
+        UndAdm undAdm = new UndAdm();            
+        controladorEdiTemTim.editarTimeOut(10, "INF");
         //caso 2
-        UndAdm undAdm2 = new UndAdm("INF",30);
-        Acesso acesso2 = new Acesso("chefe");        
-        controladorEdiTemTim.alterarTempoDeSessaoDeUnidadeAdministrativa(undAdm2, acesso2);
+        UndAdm undAdm2 = new UndAdm();              
+        controladorEdiTemTim.editarTimeOut(30, "INF");;
 
     }
 
     @Test
     public void casoTestDadosExcecoes() throws IOException {
-
-        //Grupo de teste DadosExcecoes, exemplo:
-        UndAdm undAdm = new UndAdm("INF",15);
-        Acesso acesso = new Acesso("coordenador");        
-        controladorEdiTemTim.alterarTempoDeSessaoDeUnidadeAdministrativa(undAdm, acesso);
-        //O cenario acima testa que o acesso como coordenador não permite o uso da funcionalidade
-        UndAdm undAdm2 = new UndAdm("INF",15);
-        Acesso acesso2 = new Acesso("designado");        
-        controladorEdiTemTim.alterarTempoDeSessaoDeUnidadeAdministrativa(undAdm2, acesso2);
-        //O cenario acima testa que o acesso como designado não permite o uso da funcionalidade
-        UndAdm undAdm3 = new UndAdm("INF", 6);
-        Acesso acesso3 = new Acesso("chefe");                
+        //O cenario abaixo testa que a mudança do tempo de sessão para mais de uma hora não é permitido        
+        controladorEdiTemTim.editarTimeOut(70, "INF");
+        //O cenario abaixo testa que a mudança do tempo de sessão para menos de 1 minito não é permitido             
+        controladorEdiTemTim.editarTimeOut(-10, "INF");                     
     }
 
     @AfterClass

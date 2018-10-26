@@ -5,12 +5,16 @@
  */
 
 package br.ufg.inf.fabrica.conporta022018.controlador;
-import br.ufg.inf.fabrica.conporta022018.modelo.Acesso;
 import br.ufg.inf.fabrica.conporta022018.modelo.UndAdm;
 
-public class ControladorEdiTemTim {
-    public void alterarTempoDeSessaoDeUnidadeAdministrativa(UndAdm undAdm, Acesso acesso){
+public class ControladorManterUndAdm {
+    
+    public void editarTimeOut(int timeOut, String sigla){
+        if(timeOut < 1 || timeOut >60){
+            System.out.println("Esse intervalo de tempo não é permitido");
+        }
         
     }
+    
 
 }
