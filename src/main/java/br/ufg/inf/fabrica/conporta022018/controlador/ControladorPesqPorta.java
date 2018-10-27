@@ -5,20 +5,22 @@
  */
 
 package br.ufg.inf.fabrica.conporta022018.controlador;
+
+import br.ufg.inf.fabrica.conporta022018.dto.FiltroDTO;
 import br.ufg.inf.fabrica.conporta022018.modelo.Portaria;
+import br.ufg.inf.fabrica.conporta022018.persistencia.PortariaDao;
+
+import java.util.List;
 
 
 public class ControladorPesqPorta {
 
-    public Portaria[] pesquisa(FiltroDTO filtro) {
-       Portaria[] portaria = null; 
-        return portaria;
+    private PortariaDao portariaDao;
+
+    public List<Portaria> pesqPorta(FiltroDTO filtro) {
+        return null;
     }
-    
-    public PaginaPesquisa getPaginaPesquisa(){
-        PaginaPesquisa pagPesq = null;
-        return pagPesq;
-    }
-    
-     
+
 }
+
+

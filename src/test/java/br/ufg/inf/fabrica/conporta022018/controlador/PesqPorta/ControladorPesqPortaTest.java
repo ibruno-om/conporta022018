@@ -7,6 +7,8 @@
 package br.ufg.inf.fabrica.conporta022018.controlador.PesqPorta;
 
 import br.ufg.inf.fabrica.conporta022018.controlador.ControladorPesqPorta;
+import br.ufg.inf.fabrica.conporta022018.dto.FiltroDTO;
+import br.ufg.inf.fabrica.conporta022018.modelo.Portaria;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
 import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
 import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
@@ -81,13 +83,13 @@ public class ControladorPesqPortaTest {
      * Cada cenário e cada exceção deve necessáriamente ser testado no minimo uma vez, cada entrada e/ou combinação
      * de entrada deve ser testadas pelo menos os seus limites quando houver para o G1 e para o G2.
      */
-
     @Test
     public void casoTestDadosValidos() throws IOException {
 
         //Grupo de teste DadosValidos, exemplo:
-        FiltroDTO filtro = new FiltroDTO();
-        controladorPesqPorta.pesquisa();
+        FiltroDTO filtro = new FiltroDTO(null, null, 2018, null, null);
+        List<Portaria> portarias =  controladorPesqPorta.pesqPorta(filtro);
+        Assert.assertNotNull(portarias);
 
     }
 
@@ -95,7 +97,7 @@ public class ControladorPesqPortaTest {
     public void casoTestDadosExcecoes() throws IOException {
 
         //Grupo de teste DadosExcecoes, exemplo:
-        controladorPesqPorta.pesqPorta("123.456.789-12", "FACE", 2018, 0001);
+        // controladorPesqPorta.pesqPorta("123.456.789-12", "FACE", 2018, 0001);
         //O cenario acima testa a primeira exceção do caso de uso a unidade acadêmica não é localizada.
     }
 
