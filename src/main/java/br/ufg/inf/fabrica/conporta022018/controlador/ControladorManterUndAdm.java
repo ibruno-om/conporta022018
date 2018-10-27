@@ -3,18 +3,20 @@
  * Fabrica de Software INF
  * Creative Commons Attribution 4.0 International License.
  */
-
 package br.ufg.inf.fabrica.conporta022018.controlador;
+
 import br.ufg.inf.fabrica.conporta022018.modelo.UndAdm;
+import br.ufg.inf.fabrica.conporta022018.persistencia.GenericoDAO;
+import br.ufg.inf.fabrica.conporta022018.persistencia.UndAdmDAO;
+import static javafx.scene.input.KeyCode.T;
 
 public class ControladorManterUndAdm {
-    
-    public void editarTimeOut(int timeOut, String sigla){
-        if(timeOut < 1 || timeOut >60){
-            System.out.println("Esse intervalo de tempo não é permitido");
-        }
-        
-    }
-    
 
+    public void editarTimeOut(int timeOut, String sigla) {
+        //verificar se a unidade adm existe
+        UndAdmDAO undAdmDao = new UndAdmDAO();
+        if (undAdmDao.pesquisarUndAdm(sigla) != null) {            
+            undAdmDao.editarTimeOut(timeOut);
+        }
+    }
 }
