@@ -52,6 +52,11 @@ public class ControladorCancPortRefTest {
             }
 
             switch (tabelaAtual) {
+                case "pessoa" :
+                    extrator.setTexto(linha);
+                    dados = extrator.getResultado(REGRA);
+                    //Aqui colocar os comandos para popular a tabela pessoa no Banco de Dados.
+                    break;
                 case "portaria" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
@@ -62,6 +67,21 @@ public class ControladorCancPortRefTest {
                     dados = extrator.getResultado(REGRA);
                     // Aqui colocar os comandos para popular a tabela portariaReferenciada no Banco de Dados.
                     break;
+                case "portariaDesignada" :
+                    extrator.setTexto(linha);
+                    dados = extrator.getResultado(REGRA);
+                    //Aqui colocar os comandos para popular a tabela portaria designadas no Banco de dados.
+                    break;
+                case "undAdm" :
+                    extrator.setTexto(linha);
+                    dados = extrator.getResultado(REGRA);
+                    //Aqui colocar os comandos para popular a tabela unidade administrativa no Banco de Dados.
+                    break;
+                case "designado" :
+                    extrator.setTexto(linha);
+                    dados = extrator.getResultado(REGRA);
+                    //Aqui colocar os comandos para popular a tabela designados no Banco de dados.
+                    break;
             }
         }
     }
@@ -70,6 +90,7 @@ public class ControladorCancPortRefTest {
     public void casoTestPrepararExecucao() {
 
         // Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
+
         controladorCancPortRef = new ControladorCancPortRef();
     }
 
@@ -86,17 +107,29 @@ public class ControladorCancPortRefTest {
     public void casoTestDadosValidos() throws IOException {
 
         // Grupo de teste DadosValidos
+
         controladorCancPortRef.cancelarPortariaReferenciada("INF201810");
+        // O cenário acima testa o cancelamento de uma portaria referenciada com indicativo de cancelamento
+        // pela portaria em questão. 
+        
+        controladorCancPortRef.cancelarPortariaReferenciada("INF201814");
+        // O cenário acima testa o cancelamento de uma portaria referenciada a partir de uma portaria que possui
+        // duas portarias referenciadas, onde apenas uma possui indicativo de cancelamento.
 
     }
 
-    @Test
-    public void casoTestDadosExcecoes() throws IOException {
 
-        // Grupo de teste DadosExcecoes
+    @Test(expected = Exception.class)
+    public void casoTestDadosExcecoes() throws Exception {
 
+        // Grupo de teste DadosExceções.
+        
+
+        // A exeção atribuida para as chamadas abaixo é UnsupportedOperationException, mas um tipo de Error
+        // expecífico pode ser implemantado e utilizado posteriormente.
+        
         controladorCancPortRef.cancelarPortariaReferenciada("INF201801");
-        // O cenario acima testa a primeira exceção do caso de uso, onde a portaria não é localizada.
+        // O cenario acima testa a primeira exceção do caso de uso, onde a portaria não é localizada na base de dados.
 
         controladorCancPortRef.cancelarPortariaReferenciada("INF201811");
         // O cenario acima testa a segunda exceção do caso de uso, onde uma das portarias referenciadas para
@@ -114,13 +147,17 @@ public class ControladorCancPortRefTest {
     public static void casoTestResultados() throws IOException {
 
         // Aqui deve ser verificado os resultados da exceção do Grupo G1 e G2, normalmente aqui
-        // irá fica as suas pós-condições. Exemplo:
+        // irá fica as suas pós-condições.
 
         String status = "cancelada";
         // Pega no banco de dados os status das portarias referenciadas com indicativo de cancelamento e verifica
         // se são iguais à "cancelada".
 
         // Assert.assertEquals(status, rodaSQLparaPegarOsStatusDasPortariasReferenciadasParaCancelamentoBancoDeDados);
+        
+        // Como o caso de uso realiza alterações nos dados manipulados apenas caso exceções não sejam lançadas, verificar
+        // a verificação do resultado das chamadas que geram exceção é basicamente averiguar a igualdade das portarias
+        // manipuladas antes e depois da chamada do método.
     }
 
 }
