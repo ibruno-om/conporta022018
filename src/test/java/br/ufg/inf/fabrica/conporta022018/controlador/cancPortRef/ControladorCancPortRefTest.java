@@ -37,14 +37,14 @@ public class ControladorCancPortRefTest {
         String tabelaAtual = " ";
         String dados[];
         String linha;
-        //Criar as instâncias de todos os objetos DAO's necessários para preparar o cenario.
+        // Criar as instâncias de todos os objetos DAO's necessários para preparar o cenario.
 
         dadosSoftware = lerArquivo.lerArquivo(CAMINHO_CSV);
 
         for (int index = 0; index < dadosSoftware.size(); index++) {
             linha = dadosSoftware.get(index);
 
-            //Definir as tabelas que serão populadas no Banco de Dados.
+            // Definir as tabelas que serão populadas no Banco de Dados.
             if (linha.equals("portaria")) {
                 tabelaAtual = linha;
                 index++;
@@ -55,7 +55,12 @@ public class ControladorCancPortRefTest {
                 case "portaria" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela portaria no Banco de Dados.
+                    // Aqui colocar os comandos para popular a tabela portaria no Banco de Dados.
+                    break;
+                case "portariaReferenciada" :
+                    extrator.setTexto(linha);
+                    dados = extrator.getResultado(REGRA);
+                    // Aqui colocar os comandos para popular a tabela portariaReferenciada no Banco de Dados.
                     break;
             }
         }
@@ -64,7 +69,7 @@ public class ControladorCancPortRefTest {
     @Before
     public void casoTestPrepararExecucao() {
 
-        //Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
+        // Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
         controladorCancPortRef = new ControladorCancPortRef();
     }
 
@@ -80,7 +85,7 @@ public class ControladorCancPortRefTest {
     @Test
     public void casoTestDadosValidos() throws IOException {
 
-        //Grupo de teste DadosValidos, exemplo:
+        // Grupo de teste DadosValidos
         controladorCancPortRef.cancelarPortariaReferenciada("INF201810");
 
     }
@@ -88,7 +93,8 @@ public class ControladorCancPortRefTest {
     @Test
     public void casoTestDadosExcecoes() throws IOException {
 
-        //Grupo de teste DadosExcecoes, exemplo:
+        // Grupo de teste DadosExcecoes
+
         controladorCancPortRef.cancelarPortariaReferenciada("INF201801");
         // O cenario acima testa a primeira exceção do caso de uso, onde a portaria não é localizada.
 
@@ -107,7 +113,7 @@ public class ControladorCancPortRefTest {
     @AfterClass
     public static void casoTestResultados() throws IOException {
 
-        //Aqui deve ser verificado os resultados da exceção do Grupo G1 e G2, normalmente aqui
+        // Aqui deve ser verificado os resultados da exceção do Grupo G1 e G2, normalmente aqui
         // irá fica as suas pós-condições. Exemplo:
 
         String status = "cancelada";
