@@ -4,7 +4,7 @@ import br.ufg.inf.fabrica.conporta022018.persistencia.MatriculadoDAO;
 
 import java.util.Date;
 
-public class Matriculado {
+public class Matriculado extends Pessoa {
     private int matrDiscCur;
 
     private Date dtIniMatrCur;

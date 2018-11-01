@@ -6,12 +6,17 @@
 
 package br.ufg.inf.fabrica.conporta022018.controlador;
 
-import br.ufg.inf.fabrica.conporta022018.modelo.Discente;
-import br.ufg.inf.fabrica.conporta022018.modelo.Pessoa;
+
+import br.ufg.inf.fabrica.conporta022018.persistencia.MatriculadoDAO;
 
 public class ControladorDisc {
 
+    MatriculadoDAO matriculadoDAO = new MatriculadoDAO();
+
     public void incluirDiscente(String nomePes, int cpfPes, String emailPes) {
+
+        matriculadoDAO.novoMatriculado(nomePes, cpfPes, emailPes);
+
 
     }
 
@@ -19,10 +24,10 @@ public class ControladorDisc {
 
     }
 
-    public Discente consultarDiscente(int cpfPes) {
-
-        return new Discente();
-    }
+//    public Discente consultarDiscente(int cpfPes) {
+//
+//        return new Discente();
+//    }
 
     public void alterarDiscente(String nomePes, int cpfPes, String emailPes) {
 
