@@ -7,6 +7,7 @@
 package br.ufg.inf.fabrica.conporta022018.controlador;
 
 import br.ufg.inf.fabrica.conporta022018.modelo.Discente;
+import br.ufg.inf.fabrica.conporta022018.modelo.Pessoa;
 
 public class ControladorDisc {
 
@@ -34,4 +35,5 @@ public class ControladorDisc {
     public void notificarDiscente(String emailPes) {
 
     }
+
 }
