@@ -14,15 +14,4 @@ public enum Cargo {
 
     private int TECNICO_ADMINISTRATIVO;
 
-    private Cargo cargo;
-
-//    public class Chefe extends Adm, Servidor {
-//
-//        private Date dtIniChefe;
-//
-//        private Date dtFimChefe;
-//
-//        private Cargo cargo;
-//
-//    }
 }

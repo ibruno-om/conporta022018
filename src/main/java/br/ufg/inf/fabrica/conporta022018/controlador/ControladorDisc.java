@@ -15,7 +15,7 @@ public class ControladorDisc {
 
     public void incluirDiscente(String nomePes, int cpfPes, String emailPes) {
 
-        matriculadoDAO.novoMatriculado(nomePes, cpfPes, emailPes);
+//        matriculadoDAO.novoMatriculado(nomePes, cpfPes, emailPes);
 
 
     }
@@ -23,11 +23,6 @@ public class ControladorDisc {
     public void excluirDiscente(int cpfPes) {
 
     }
-
-//    public Discente consultarDiscente(int cpfPes) {
-//
-//        return new Discente();
-//    }
 
     public void alterarDiscente(String nomePes, int cpfPes, String emailPes) {
 

@@ -17,7 +17,7 @@ public abstract class GenericoDAO<T> {
 
     }
 
-    public T buscar(Long id) {
+    public T buscar(int id) {
         return null;
     }
 
