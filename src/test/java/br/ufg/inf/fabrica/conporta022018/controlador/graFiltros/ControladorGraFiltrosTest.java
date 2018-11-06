@@ -4,9 +4,11 @@
  * Creative Commons Attribution 4.0 International License.
  */
 
-package br.ufg.inf.fabrica.conporta022018.controlador.regCiencDesig;
+package br.ufg.inf.fabrica.conporta022018.controlador.PesqPorta;
 
-import br.ufg.inf.fabrica.conporta022018.controlador.ControladorGraFiltros;
+import br.ufg.inf.fabrica.conporta022018.controlador.ControladorPesqPorta;
+import br.ufg.inf.fabrica.conporta022018.dto.FiltroDTO;
+import br.ufg.inf.fabrica.conporta022018.modelo.Portaria;
 import br.ufg.inf.fabrica.conporta022018.util.Extrator;
 import br.ufg.inf.fabrica.conporta022018.util.LerArquivo;
 import br.ufg.inf.fabrica.conporta022018.util.csv.ExtratorCSV;
@@ -17,9 +19,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ControladorGraFiltrosTest {
+public class ControladorPesqPortaTest {
 
-    private static ControladorGraFiltros controladorGraFiltros;
+    private static ControladorPesqPorta controladorPesqPorta;
 
     /*
      * Preparação do ambiente para teste.
@@ -29,7 +31,7 @@ public class ControladorGraFiltrosTest {
     @BeforeClass
     public static void casoTestPepararCenario() throws IOException {
 
-        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/graFiltros/GraFiltrosDadosTest.csv";
+        String CAMINHO_CSV = "src/test/java/br/ufg/inf/fabrica/conporta022018/controlador/pesqPorta/GraFiltrosDadosTest.csv";
         String REGRA = ";";
         List<String> dadosSoftware = new ArrayList<>();
         Extrator extrator = new ExtratorCSV();
@@ -45,29 +47,19 @@ public class ControladorGraFiltrosTest {
             linha = dadosSoftware.get(index);
 
             //Definir as tabelas que serão populadas no Banco de Dados.
-            if (linha.equals("pessoa") || linha.equals("portaria") || linha.equals("undAdm") || linha.equals("designado")) {
+            if (linha.equals("portaria") || linha.equals("filtro")) {
                 tabelaAtual = linha;
                 index++;
                 continue;
             }
 
             switch (tabelaAtual) {
-                case "pessoa" :
-                    extrator.setTexto(linha);
-                    dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela pessoa no Banco de Dados.
-                    break;
                 case "portaria" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
                     //Aqui colocar os comandos para popular a tabela portaria no Banco de Dados.
                     break;
-                case "undAdm" :
-                    extrator.setTexto(linha);
-                    dados = extrator.getResultado(REGRA);
-                    //Aqui colocar os comandos para popular a tabela Unidade Administrativa no Banco de Dados.
-                    break;
-                case "designado" :
+                case "filtro" :
                     extrator.setTexto(linha);
                     dados = extrator.getResultado(REGRA);
                     //Aqui colocar os comandos para popular a tabela designados no Banco de dados.
@@ -80,7 +72,7 @@ public class ControladorGraFiltrosTest {
     public void casoTestPrepararExecucao() {
 
         //Neste Grupo ficará tudo que é necessário para a execução dos cenarios definidos para os testes.
-        controladorGraFiltros = new ControladorGraFiltros();
+        controladorPesqPorta = new ControladorPesqPorta();
     }
 
     /*
@@ -91,21 +83,48 @@ public class ControladorGraFiltrosTest {
      * Cada cenário e cada exceção deve necessáriamente ser testado no minimo uma vez, cada entrada e/ou combinação
      * de entrada deve ser testadas pelo menos os seus limites quando houver para o G1 e para o G2.
      */
-
     @Test
     public void casoTestDadosValidos() throws IOException {
-
         //Grupo de teste DadosValidos, exemplo:
-        controladorGraFiltros.graFiltros("123.456.789-12", "INF", 2018, 0001);
-
+        Filtro filtro = new Filtro("Instituto de Informática", 01/01/2018, 05/11/2018, null, null, null, null, null);
+        List<Portaria> portarias =  controladorGraFiltros.graFiltros(filtro);
+        Assert.assertNotNull(portarias);
     }
 
     @Test
     public void casoTestDadosExcecoes() throws IOException {
 
-        //Grupo de teste DadosExcecoes, exemplo:
-        controladorGraFiltros.graFiltros("123.456.789-12", "FACE", 2018, 0001);
-        //O cenario acima testa a primeira exceção do caso de uso a unidade acadêmica não é localizada.
+        //Grupo de teste DadosValidos, exemplo:
+        Filtro filtro = new Filtro("Instituto de Informática", 01/01/2018, 05/11/2018, 02/01/2018, 05/11/18, null, null, true);
+        List<Portaria> portarias =  controladorPesqPorta.graFiltros(filtro);
+        Assert.assertNotNull(portarias);
+    }
+
+    @Test
+    public void casoTestDadosExcecoes() throws IOException {
+
+        //Grupo de teste DadosValidos, exemplo:
+        Filtro filtro = new Filtro("Instituto de Informática", 01/01/2018, 05/11/2018, 02/01/2018, 05/11/18, null, null, null);
+        List<Portaria> portarias =  controladorPesqPorta.graFiltros(filtro);
+        Assert.assertNotNull(portarias);
+    }
+
+    @Test
+    public void casoTestDadosExcecoes() throws IOException {
+
+        //Grupo de teste DadosValidos, exemplo:
+        Filtro filtro = new Filtro("Faculdade de Contabilidade, Administração e Economia", 01/01/2018, 05/11/2018, 01/01/2019, 01/05/2019, true, "docente", null);
+        List<Portaria> portarias =  controladorPesqPorta.graFiltros(filtro);
+        Assert.assertNotNull(portarias);
+    }
+
+    @Test
+    public void casoTestDadosExcecoes() throws IOException {
+
+        //Grupo de teste DadosValidos, exemplo:
+        Filtro filtro = new Filtro("Instituto de Informática", 01/01/2018, 05/11/2018, 01/01/2018, 01/12/2018, true, "docente", null);
+        List<Portaria> portarias =  controladorPesqPorta.graFiltros(filtro);
+        Assert.assertNotNull(portarias);
     }
 
     @AfterClass
