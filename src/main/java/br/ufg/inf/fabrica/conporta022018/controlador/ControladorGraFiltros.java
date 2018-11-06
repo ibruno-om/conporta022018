@@ -10,17 +10,10 @@ import java.util.Date;
 
 public class ControladorGraFiltros {
 
-    public void getUndAdm(){ 
+    private PortariaDao portariaDao;
+
+    public List<Portaria> graFiltros(Filtro filtro) {
+        return null;
     }
-    
-    public void setFiltro(){ 
-    }
-    
-    public void getDados(){ 
-    }
-    
-    public void setOrdenacao(){ 
-    }
-    
 
 }

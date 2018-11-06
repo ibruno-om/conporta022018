@@ -1,12 +1,5 @@
-pessoa
-PKpes;nomePes; cpfPes; emailPes; senhaUsu; ehUsuAtivo
-1;JosÈ Carlos Santos; 123.456.789-12; jose@exemplo.com; 123456; true
-portaria
-PKportaria;idPortaria; siglaUndId; anoId; seqId; status; assunto; dtExped; periodVig; dtIniVig; dtFimVig. dPublicDou; horasDesig; resumo; textoCompleto; arqPdf
-1;001; inf; 2018; 0001; Ativa; Novo coordenador de curso; 12/11/2018; 01/01/201931/12/2021; 01/01/2019; 31/12/2021; 12/12/2018; 220; Representa um colaborador que trabalha em uma unidade administrativa independentemente da forma de contrato deste trabalho.; Representa uma unidade que compıe a estrutura acadÍmica e administrativa da universidade. Conforme o Art. 7∫ do Estatuto da UFG;;
-undAdm
-PKundAdm;nomeUnd; siglaUnd; tipoUnd; minInat; ultPort; anoPort; ultNumExped; ultNumProp
-1;Instituto de Inform·tica; INF; Unidade AcadÍmica; 15; 2018001; 2018; 1; -1
-designado
-PKdesg;dtCienciaDesig; tipFuncDesig; descrFuncDesig; horasDefFuncDesig; horasExecFuncDesig; PKportaria; PKpes
-1;; Coordenador; Novo coordenador de curso; 220; ;1;1
+nomeUnd;nomePes;cpfPes;idPortaria;dtExped;dtInVig;dtFimVig;horasDesig;isServidor;cargoServ;isDiscente
+Instituto de Inform√°tica - UFG;Ana Lu√≠sa Alves Burjack;05686632170;INF180002;13/01/2018;25/07/2018;25/09/2018;200;false;null;true
+Instituto de Inform√°tica - UFG;Nat√°lia Marufuji Aoki;14528659822;INF180002;13/01/2018;25/07/2018;25/09/2018;200;false;null;true
+Instituto de Inform√°tica - UFG;Ana Lu√≠sa Alves Burjack;05686632170;INF181236;14/10/2018;29/10/2018;29/11/2018;50;true;docente;false
+Faculdade de Contabilidade, Administra√ß√£o e Economia;Tiago Camarinha;45879612356;FACE0203050;20/10/2018;12/01/2019;30/04/2019;300;true;docente;false0/10/2018;12/01/2019;30/04/2019;300;true;docente;false
