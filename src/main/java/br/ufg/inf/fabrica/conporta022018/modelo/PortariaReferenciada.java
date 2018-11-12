@@ -1,8 +1,12 @@
 package br.ufg.inf.fabrica.conporta022018.modelo;
 
+import br.ufg.inf.fabrica.conporta022018.persistencia.PortariaReferenciadaDAO;
+
 public class PortariaReferenciada {
+
     private Portaria PortariaReferenciada;
     private boolean ehCancelamento;
+    private PortariaReferenciadaDAO portariaReferenciadaDAO;
 
     /**
      * @return Portaria return the PortariaReferenciada
