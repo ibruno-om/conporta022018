@@ -1,4 +1,5 @@
 package br.ufg.inf.fabrica.conporta022018.modelo;
+import java.util.Date;
 
 public class Recebedora {
      
@@ -17,7 +18,7 @@ public class Recebedora {
         this.unidadeRecebedora = unidadeRecebedora;
     }  
 
-    public Date getUnidadeRecebedora(){
+    public UndAdm getUnidadeRecebedora(){
         return this.unidadeRecebedora;
     }
 }
