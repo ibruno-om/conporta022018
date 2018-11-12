@@ -1,13 +1,20 @@
 package br.ufg.inf.fabrica.conporta022018.modelo;
 
+import br.ufg.inf.fabrica.conporta022018.persistencia.DesignadoDAO;
+
 import java.util.Date;
 import java.util.List;
 
 public class Designado {
+
     private Date dtCienciaDesig;
     private String descrFuncDesig;
-    private Integer horasDefFuncDesig;
-    private Integer horasExecFuncDesig;
+    private int horasDefFuncDesig;
+    private int horasExecFuncDesig;
+    private Pessoa pessoa;
+    private FuncaoDesig funcaoDesig;
+    private Portaria portaria;
+    private DesignadoDAO designadoDAO;
 
     /**
      * @return Date return the dtCienciaDesig
